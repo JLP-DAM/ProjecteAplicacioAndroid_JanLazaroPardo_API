@@ -1,10 +1,10 @@
-package com.gilded.api;
+package com.gilded;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiApplicationTests {
+class GildedApplicationTests {
 
 	@Test
 	void contextLoads() {
