@@ -13,7 +13,7 @@ public class Receipt {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String recipient;
 
     @Column(nullable = false)
     private Double amount;
@@ -32,12 +32,12 @@ public class Receipt {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRecipient() {
+        return recipient;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
     }
 
     public Double getAmount() {
@@ -62,5 +62,11 @@ public class Receipt {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Receipt [id=" + id + ", name=" + recipient + ", amount=" + amount + ", timestamp=" + timestamp
+                + ", category=" + category + "]";
     }
 }

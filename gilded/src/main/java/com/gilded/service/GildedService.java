@@ -17,7 +17,15 @@ public class GildedService {
         return receiptRepository.findAll();
     }
 
-    public void saveReceipt(Receipt receipt) {
+    public Receipt saveReceipt(Receipt receipt) {
+        return receiptRepository.save(receipt);
+    }
+
+    public void deleteReceipt(long id) {
+        receiptRepository.deleteById(id);
+    }
+
+    public void updateReceipt(Receipt receipt) {
         receiptRepository.save(receipt);
-    } 
+    }
 }
