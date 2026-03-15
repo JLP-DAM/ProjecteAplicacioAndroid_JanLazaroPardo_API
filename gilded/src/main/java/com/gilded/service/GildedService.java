@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.gilded.model.Category;
 import com.gilded.model.Receipt;
-import com.gilded.model.User;
+import com.gilded.model.AppUser;
 import com.gilded.repository.CategoryRepository;
 import com.gilded.repository.ReceiptRepository;
 import com.gilded.repository.UserRepository;
@@ -40,11 +39,11 @@ public class GildedService {
         receiptRepository.save(receipt);
     }
 
-    public User getUser(String email, String password) {
+    public AppUser getUser(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
-    public User postUser(User user) {
+    public AppUser postUser(AppUser user) {
         return userRepository.save(user);
     }
 

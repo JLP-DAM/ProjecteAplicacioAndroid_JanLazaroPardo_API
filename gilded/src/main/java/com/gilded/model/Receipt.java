@@ -24,7 +24,7 @@ public class Receipt {
     @Column(nullable = false)
     private String category;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
     private Long ownerId;
 
     public Long getId() {

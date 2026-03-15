@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gilded.model.Category;
 import com.gilded.model.Receipt;
-import com.gilded.model.User;
+import com.gilded.model.AppUser;
 import com.gilded.service.GildedService;
 
 import java.util.List;
@@ -45,14 +45,14 @@ public class GildedController {
     }
 
     @GetMapping("/users/{email}/{password}")
-    public User getUser(@PathVariable String email, @PathVariable String password) {
+    public AppUser getUser(@PathVariable String email, @PathVariable String password) {
         System.out.println("FOUND: " + gildedService.getUser(email, password));
 
         return gildedService.getUser(email, password);
     }
     
     @PostMapping("/users")
-    public User postUser(@RequestBody User user) {
+    public AppUser postUser(@RequestBody AppUser user) {
         System.out.println("POST: " + user);
         
         return gildedService.postUser(user);
