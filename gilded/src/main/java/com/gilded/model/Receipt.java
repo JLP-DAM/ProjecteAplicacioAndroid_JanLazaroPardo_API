@@ -24,6 +24,9 @@ public class Receipt {
     @Column(nullable = false)
     private String category;
 
+     @Column(nullable = false)
+    private Long ownerId;
+
     public Long getId() {
         return id;
     }
@@ -64,9 +67,17 @@ public class Receipt {
         this.category = category;
     }
 
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
     @Override
     public String toString() {
-        return "Receipt [id=" + id + ", name=" + recipient + ", amount=" + amount + ", timestamp=" + timestamp
-                + ", category=" + category + "]";
+        return "Receipt [id=" + id + ", recipient=" + recipient + ", amount=" + amount + ", timestamp=" + timestamp
+                + ", category=" + category + ", ownerId=" + ownerId + "]";
     }
 }

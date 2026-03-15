@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.gilded.model.Category;
 import com.gilded.model.Receipt;
 import com.gilded.model.User;
+import com.gilded.repository.CategoryRepository;
 import com.gilded.repository.ReceiptRepository;
 import com.gilded.repository.UserRepository;
 
@@ -19,8 +21,11 @@ public class GildedService {
     @Autowired
     UserRepository userRepository;
 
-    public List<Receipt> getReceipts() {
-        return receiptRepository.findAll();
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    public List<Receipt> getReceipts(Long ownerId) {
+        return receiptRepository.findAllByOwnerId(ownerId);
     }
 
     public Receipt postReceipt(Receipt receipt) {
@@ -41,5 +46,17 @@ public class GildedService {
 
     public User postUser(User user) {
         return userRepository.save(user);
+    }
+
+    public List<Category> getCategories(Long ownerId) {
+        return categoryRepository.findAllByOwnerId(ownerId);
+    }
+
+    public Category postCategory(Category category) {
+        if (categoryRepository.findByName(category.getName()) != null) {
+            return null;
+        }
+
+        return categoryRepository.save(category);
     }
 }

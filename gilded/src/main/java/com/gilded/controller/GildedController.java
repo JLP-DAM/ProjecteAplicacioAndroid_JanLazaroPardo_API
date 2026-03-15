@@ -3,6 +3,7 @@ package com.gilded.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gilded.model.Category;
 import com.gilded.model.Receipt;
 import com.gilded.model.User;
 import com.gilded.service.GildedService;
@@ -23,9 +24,9 @@ public class GildedController {
     @Autowired
     GildedService gildedService;
 
-    @GetMapping("/receipts")
-    public List<Receipt> getReceipts() {
-        return gildedService.getReceipts();
+    @GetMapping("/receipts/{ownerId}")
+    public List<Receipt> getReceipts(@PathVariable Long ownerId) {
+        return gildedService.getReceipts(ownerId);
     }
     
     @PostMapping("/receipts")
@@ -34,7 +35,7 @@ public class GildedController {
     }
 
     @DeleteMapping("/receipts/{id}")
-    public void deleteReceipt(@PathVariable long id) {
+    public void deleteReceipt(@PathVariable Long id) {
         gildedService.deleteReceipt(id);
     }
 
@@ -45,11 +46,25 @@ public class GildedController {
 
     @GetMapping("/users/{email}/{password}")
     public User getUser(@PathVariable String email, @PathVariable String password) {
+        System.out.println("FOUND: " + gildedService.getUser(email, password));
+
         return gildedService.getUser(email, password);
     }
     
     @PostMapping("/users")
     public User postUser(@RequestBody User user) {
+        System.out.println("POST: " + user);
+        
         return gildedService.postUser(user);
+    }
+
+    @GetMapping("/categories/{ownerId}")
+    public List<Category> getCategories(@PathVariable Long ownerId) {
+        return gildedService.getCategories(ownerId);
+    }
+    
+    @PostMapping("/categories")
+    public Category postCategory(@RequestBody Category category) {
+        return gildedService.postCategory(category);
     }
 }
