@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gilded.model.Receipt;
+import com.gilded.model.User;
 import com.gilded.service.GildedService;
 
 import java.util.List;
@@ -24,13 +25,12 @@ public class GildedController {
 
     @GetMapping("/receipts")
     public List<Receipt> getReceipts() {
-        System.out.println(gildedService.getReceipts());
         return gildedService.getReceipts();
     }
     
     @PostMapping("/receipts")
     public Receipt postReceipt(@RequestBody Receipt receipt) {
-        return gildedService.saveReceipt(receipt);
+        return gildedService.postReceipt(receipt);
     }
 
     @DeleteMapping("/receipts/{id}")
@@ -41,5 +41,15 @@ public class GildedController {
     @PutMapping("/receipts")
     public void updateReceipt(@RequestBody Receipt receipt) {
         gildedService.updateReceipt(receipt);
+    }
+
+    @GetMapping("/users/{email}/{password}")
+    public User getUser(@PathVariable String email, @PathVariable String password) {
+        return gildedService.getUser(email, password);
+    }
+    
+    @PostMapping("/users")
+    public User postUser(@RequestBody User user) {
+        return gildedService.postUser(user);
     }
 }
